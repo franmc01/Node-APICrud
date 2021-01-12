@@ -1,3 +1,4 @@
+//Importaciones
 const express = require('express');
 const app = express();
 const sequelize = require('./database/db');
@@ -6,18 +7,21 @@ const User = require('./database/models/User')
 //Settings
 const PORT = process.env.PORT || 3000;
 
-app.get('/', function(req, res){
-    // User.create({
-    //     firstName: "Francisco",
-    //     lastName: "Marin"
-    // }).then(user=>{
-    //     res.json(user);
-    // })
-    User.findAll().then(users=>{
-        res.json(users)
-    });
-})
 
+//Middlewares
+//Para poder rellenar el req.body
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+
+//Rutas
+app.get('/', function(req, res){
+    res.json('Hola Mundo')
+});
+
+app.use('/api/posts', require('./routes/post.routes'));
+
+
+//Arrancamos el servidor
 app.listen(3000, function(){
     console.log(`La aplicación ha arrancado en http://localhost:${PORT}`);
 
