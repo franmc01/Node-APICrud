@@ -19,6 +19,7 @@ app.get('/', function(req, res){
 });
 
 app.use('/api/posts', require('./routes/post.routes'));
+app.use('/api/users', require('./routes/user.routes'));
 
 
 //Arrancamos el servidor
@@ -27,7 +28,7 @@ app.listen(3000, function(){
 
     //Conexión a la base de datos
     //Force:false DROP TABLES
-    sequelize.sync({force:false}).then(()=>{
+    sequelize.sync({force:true}).then(()=>{
         console.log('Conexión exitosa a la base de datos');
     }).catch(error=>{
         console.error('Error de conexión', error);
