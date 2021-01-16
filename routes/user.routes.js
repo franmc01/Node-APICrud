@@ -1,10 +1,16 @@
 const express = require('express');
+const Address = require('../database/models/Address');
 const  User  = require('../database/models/User');
 const router = express.Router();
 
 //All
 router.get('/', (req, res)=>{
-    User.findAll().then(users=>{
+    User.findAll({
+        include: {
+            model: Address,
+            attributes: ['direccion']
+        },
+    }).then(users=>{
         res.json({
             ok:true,
             users

@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const sequelize = require('./database/db');
-const User = require('./database/models/User')
+require('./database/Relations');
 
 //Settings
 const PORT = process.env.PORT || 3000;
@@ -28,7 +28,7 @@ app.listen(3000, function(){
 
     //Conexión a la base de datos
     //Force:false DROP TABLES
-    sequelize.sync({force:true}).then(()=>{
+    sequelize.sync({force:false}).then(()=>{
         console.log('Conexión exitosa a la base de datos');
     }).catch(error=>{
         console.error('Error de conexión', error);
