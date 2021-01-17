@@ -7,7 +7,6 @@ require('./database/Relations');
 //Settings
 const PORT = process.env.PORT || 3000;
 
-
 //Middlewares
 //Para poder rellenar el req.body
 app.use(express.json());
