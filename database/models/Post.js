@@ -7,7 +7,8 @@ Post.init({
     description: DataTypes.TEXT
 },{
     sequelize,
-    modelName: "posts"
+    modelName: "post",
+    timestamps: false
 });
 
 module.exports = Post;

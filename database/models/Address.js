@@ -6,6 +6,8 @@ const Address = sequelize.define('address', {
         type: DataTypes.STRING,
         allowNull: false,
     }
+},{
+    timestamps: false
 });
 
 module.exports = Address;
