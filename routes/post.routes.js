@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../database/models/Post')
+const Post = require('../database/models/Post');
+const User = require('../database/models/User');
 
 //All -> /api/posts
 router.get('/', (req, res)=>{
-    Post.findAll().then(posts=>{
+    Post.findAll({
+        include: {
+            model: User
+        }
+    }).then(posts=>{
         res.json({
             ok: true,
             posts,
@@ -14,6 +19,10 @@ router.get('/', (req, res)=>{
 
 //Create -> /api/posts
 router.post('/', (req, res)=>{
+    const idUser = req.body.userId;
+    if(idUser === User.findByPk(User.userId)){
+        console.log("existe");
+    }
    Post.create({
         title: req.body.title,
         description:req.body.description

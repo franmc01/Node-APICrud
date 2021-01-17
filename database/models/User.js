@@ -16,7 +16,10 @@ const User = sequelize.define('user', {
         },
       }
     },
-    lastName: DataTypes.STRING,
+    lastName:{
+    type: DataTypes.STRING,
+    allowNull: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -55,7 +58,8 @@ const User = sequelize.define('user', {
       defaultValue: false
     }
 },{
-  timestamps: false
+  timestamps: false,
+  
 });
 
 module.exports = User;
