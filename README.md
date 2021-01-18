@@ -3,12 +3,12 @@ Api basica con Node, Express y Sequelize - No terminada pero funcional
 
 Pasos para usarla:
 * 1.- Clonar el repositorio
-* 2.- Ejecutar npm install para instalar las dependencias
-* 3.- Ejucutar npm run dev para ejecutar el servidor
+* 2.- Ejecutar <code>npm install</code> para instalar las dependencias
+* 3.- Ejecutar <code>npm run dev</code> para ejecutar el servidor
 
 
-###Requisito importante
-* Tener instalado NodeJs [Link oficial]: https://nodejs.org/es/
+## Requisito importante
+* Tener instalado NodeJs para poder ejecutar los comandos [Link oficial]: https://nodejs.org/es/
  
 
 

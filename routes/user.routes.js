@@ -4,7 +4,7 @@ const  User  = require('../database/models/User');
 const  Post  = require('../database/models/Post');
 const router = express.Router();
 
-//Listar usuarios
+//Listar usuarios /api/users/
 router.get('/', (req, res)=>{
     User.findAll({
         include:[ { model: Address }, { model: Post } ]
@@ -17,9 +17,9 @@ router.get('/', (req, res)=>{
 });
 
 
-//Obtener un usuario
+//Obtener un usuario /api/users/:id
 router.get('/:id', (req, res)=>{
-    User.findByPk(req.params.id).then(user=>{
+    User.findByPk().then(user=>{
         if (user) {
             res.json({
                 ok:true,
@@ -35,7 +35,7 @@ router.get('/:id', (req, res)=>{
 });
 
 
-//Insertar usuarios
+//Insertar usuarios /api/users/
 router.post('/', (req, res)=>{
     User.create({
         firstName:req.body.firstName,
@@ -53,8 +53,39 @@ router.post('/', (req, res)=>{
     });
 }); 
 
+//Update -> /api/users/:id
+router.put('/:id', (req, res)=>{
+    User.update({
+        firstName:req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        age: req.body.age,
+        role: req.body.role
+    },{
+        where:{
+            id: req.params.id
+        }
+    }).then(result=>{
+        res.json({
+            ok:true,
+            message: "User actualizado correctamente",
+        });
+    });
+});
 
 
+router.delete('/:id', (req, res)=>{
+    User.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(()=>{
+        res.json({
+            ok: true,
+            message: "User eliminado correctamente"
+        })
+    })
+});
 
 
 
